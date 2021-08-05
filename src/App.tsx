@@ -1,8 +1,5 @@
 import React from "react";
-import {
-  useQuery,
-  gql
-} from "@apollo/client";
+import { useQuery, gql } from "@apollo/client";
 
 import logo from "./logo.svg";
 import "./App.css";
@@ -19,15 +16,26 @@ const APP_QUERY = gql`
 `;
 
 function App() {
-  const { error, data } = useQuery(APP_QUERY);
+  const { loading, error, data } = useQuery(APP_QUERY);
 
   let message: React.ReactNode;
   if (error) {
     console.error("error while querying GraphQL service", error);
-    message = <>unable to connect to Sensu cluster: <em>{error.message}</em></>;
-  } else {
+    message = (
+      <>
+        unable to connect to Sensu cluster: <em>{error.message}</em>
+      </>
+    );
+  } else if (!loading && data) {
     const date = new Date(data.versions.backend.buildDate);
-    message = <>connected to cluster running <em>{data.versions.backend.version} ({date.toLocaleDateString()})</em></>;
+    message = (
+      <>
+        connected to cluster running{" "}
+        <em>
+          {data.versions.backend.version} ({date.toLocaleDateString()})
+        </em>
+      </>
+    );
   }
 
   return (
@@ -35,6 +43,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
       </header>
+
       <div className="App-body">
         <p>
           <ul>
@@ -44,7 +53,12 @@ function App() {
             <li>{message}</li>
           </ul>
         </p>
+
         <p>
+          <a href="/graphiql" target="_blank" rel="noopener noreferrer">
+            GraphiQL
+          </a>
+          {" · "}
           <a
             href="https://github.com/apollographql/apollo-client-devtools#installation"
             target="_blank"

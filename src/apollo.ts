@@ -20,16 +20,16 @@ const createAuthLink = () =>
   });
 
 const createClient = () => {
-    // NOTE: the backend doesn't support CORS
-    //
-    // const url = process.env.REACT_APP_API;
-    // if (!url) {
-    //   console.warn(`
-    //     it does not appear as if the environment variable SENSU_API_URL is set,
-    //     this may hinder your ability to communicate with the Sensu GraphQL service.
-    //   `);
-    // }
-    //
+  // NOTE: the backend doesn't support CORS
+  //
+  // const url = process.env.REACT_APP_API;
+  // if (!url) {
+  //   console.warn(`
+  //     it does not appear as if the environment variable SENSU_API_URL is set,
+  //     this may hinder your ability to communicate with the Sensu GraphQL service.
+  //   `);
+  // }
+  //
 
   const authLink = createAuthLink();
   const httpLink = createHttpLink({ uri: "/graphql" });
