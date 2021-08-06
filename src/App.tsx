@@ -1,9 +1,13 @@
 import React from "react";
 import { useQuery, gql } from "@apollo/client";
 
+// TODO: Implement me!
+// import EntitiesList from "./EntitiesList";
+
 import logo from "./logo.svg";
 import "./App.css";
 
+// As an example: query version & build date from service
 const APP_QUERY = gql`
   query AppQuery {
     versions {
@@ -15,6 +19,7 @@ const APP_QUERY = gql`
   }
 `;
 
+// NOTE: Feel free to delete me at your lesuire
 function App() {
   const { loading, error, data } = useQuery(APP_QUERY);
 
@@ -67,6 +72,8 @@ function App() {
             Apollo Dev Tools
           </a>
         </p>
+
+        {/* <EntitiesList /> */}
       </div>
     </div>
   );
