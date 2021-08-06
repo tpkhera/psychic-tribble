@@ -15,7 +15,7 @@ The primary objective of this project is to provide a simple local development e
 
 1. **Git**
 
-   Please visit the [Git user documentation](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) for instructions on installing Docker.
+   Please visit the [Git user documentation](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) for instructions on installing Git.
 
 1. **Docker**
 
