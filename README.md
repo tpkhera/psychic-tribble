@@ -64,11 +64,13 @@ There are two ways to setup the Sensu Web Dev environment: manual installation (
    ```shell
    # Download sensuctl
    export SENSU_VERSION="6.4.0"
+   export SENSU_USERNAME="admin"
+   export SENSU_PASSWORD="P@ssw0rd!"
    curl -LO "https://s3-us-west-2.amazonaws.com/sensu.io/sensu-go/${SENSU_VERSION}/sensu-go_${SENSU_VERSION}_darwin_amd64.tar.gz"
    sudo tar -xzf "sensu-go_${SENSU_VERSION}_darwin_amd64.tar.gz" -C /usr/local/bin/
    rm sensu-go_${SENSU_VERSION}_darwin_amd64.tar.gz
    # Configure sensuctl
-   sensuctl configure --api-url http://127.0.0.1:8080
+   sensuctl configure --non-interactive --namespace default --api-url http://127.0.0.1:8080 --username ${SENSU_USERNAME} --password ${SENSU_PASSWORD}
    ```
 
    **Windows users (Powershell):**
@@ -76,6 +78,8 @@ There are two ways to setup the Sensu Web Dev environment: manual installation (
    ```powershell
    # Download sensuctl
    ${Env:SENSU_VERSION}="6.4.0"
+   ${Env:SENSU_USERNAME}="admin"
+   ${Env:SENSU_PASSWORD}="P@ssword!"
    Invoke-WebRequest `
      -Uri "https://s3-us-west-2.amazonaws.com/sensu.io/sensu-go/${Env:SENSU_VERSION}/sensu-go_${Env:SENSU_VERSION}_windows_amd64.zip" `
      -OutFile "${Env:UserProfile}\sensu-go_${Env:SENSU_VERSION}_windows_amd64.zip"
@@ -84,7 +88,7 @@ There are two ways to setup the Sensu Web Dev environment: manual installation (
      -DestinationPath "${Env:UserProfile}\Sensu\bin"
    ${Env:Path} += ";${Env:UserProfile}\Sensu\bin"
    # Configure sensuctl
-   sensuctl configure --api-url http://127.0.0.1:8080
+   sensuctl configure --non-interactive --namespace default --api-url http://127.0.0.1:8080 --username ${Env:SENSU_USERNAME} --password ${Env:SENSU_PASSWORD}
    ```
 
    **Linux users:**
@@ -92,22 +96,26 @@ There are two ways to setup the Sensu Web Dev environment: manual installation (
    ```shell
    # Download sensuctl
    export SENSU_VERSION="6.4.0"
+   export SENSU_USERNAME="admin"
+   export SENSU_PASSWORD="P@ssw0rd!"
    curl -LO "https://s3-us-west-2.amazonaws.com/sensu.io/sensu-go/${SENSU_VERSION}/sensu-go_${SENSU_VERSION}_linux_amd64.tar.gz" && \
-   tar -xzf "sensu-go_${SENSU_VERSION}_linux_amd64.tar.gz" -C /usr/local/bin/ && \
+   sudo tar -xzf "sensu-go_${SENSU_VERSION}_linux_amd64.tar.gz" -C /usr/local/bin/ && \
    rm "sensu-go_${SENSU_VERSION}_linux_amd64.tar.gz"
    # Configure sensuctl
-   sensuctl configure --api-url http://127.0.0.1:8080
+   sensuctl configure --non-interactive --namespace default --api-url http://127.0.0.1:8080 --username ${SENSU_USERNAME} --password ${SENSU_PASSWORD}
    ```
 
 1. **Pre-seed the Sensu API with sample data.**
 
    ```shell
-   sensuctl create -rf data/
+   sensuctl create -f data/sample.yaml
    ```
 
    Verify that the sample data was created using the following commands:
 
-   - `sensuctl namespace list`
+   - Run the `sensuctl namespace list` command.
+
+     You should see output similar to the following:
 
      ```shell
      $ sensuctl namespace list
@@ -117,18 +125,19 @@ There are two ways to setup the Sensu Web Dev environment: manual installation (
        development
        production
        staging
-       trainee
      ```
 
-  - `sensuctl entity list`
+  - Run the `sensuctl entity list` command.
 
-     ```shell
-     $ sensuctl entity list --all-namespaces
+    You should see output similar to the following:
+
+    ```shell
+    $ sensuctl entity list --all-namespaces
              ID         Class      OS                       Subscriptions                              Last Seen
      ───────────────── ─────── ────────── ───────────────────────────────────────────────── ────────────────────────────────
        db01             agent   linux      system/linux,workshop,devel,entity:28b2d129bd90   2021-08-05 17:02:56 -0700 PDT
        app0             proxy   Workshop   entity:learn.sensu.io                             N/A
-     ```
+    ```
 
 1. **Create a Sensu API Key.**
 

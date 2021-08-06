@@ -1,0 +1,107 @@
+---
+type: Namespace
+api_version: core/v2
+metadata:
+  name: development
+spec:
+  name: development
+
+---
+type: Namespace
+api_version: core/v2
+metadata:
+  name: staging
+spec:
+  name: staging
+
+---
+type: Namespace
+api_version: core/v2
+metadata:
+  name: production
+spec:
+  name: production
+
+---
+type: Entity
+api_version: core/v2
+metadata:
+  name: db01
+  namespace: development
+  labels:
+    region: us-east-1
+  annotations: {}
+spec:
+  entity_class: proxy
+  subscriptions:
+  - database
+
+---
+type: Entity
+api_version: core/v2
+metadata:
+  name: app01
+  namespace: development
+  labels:
+    region: us-east-1
+  annotations: {}
+spec:
+  entity_class: proxy
+  subscriptions:
+  - app
+
+---
+type: Entity
+api_version: core/v2
+metadata:
+  name: db01
+  namespace: staging
+  labels:
+    region: us-west-1
+  annotations: {}
+spec:
+  entity_class: proxy
+  subscriptions:
+  - database
+
+---
+type: Entity
+api_version: core/v2
+metadata:
+  name: app01
+  namespace: staging
+  labels:
+    region: us-west-1
+  annotations: {}
+spec:
+  entity_class: proxy
+  subscriptions:
+  - app
+
+---
+type: Entity
+api_version: core/v2
+metadata:
+  name: db01
+  namespace: production
+  labels:
+    region: us-central-1
+  annotations: {}
+spec:
+  entity_class: proxy
+  subscriptions:
+  - database
+
+---
+type: Entity
+api_version: core/v2
+metadata:
+  name: app01
+  namespace: production
+  labels:
+    region: us-central-1
+  annotations: {}
+spec:
+  entity_class: proxy
+  subscriptions:
+  - database
