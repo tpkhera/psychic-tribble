@@ -148,7 +148,7 @@ There are two ways to setup the Sensu Web Dev environment: manual installation (
      Created: /api/core/v2/apikeys/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
      ```
 
-   - Add the API Key to the `.env` file provided in this repository:
+   - Add the API Key to the `.env.local` file provided in this repository:
 
      Copy the API key output from the `sensuctl api-key grant admin` command (the `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx` part of the output) to the `.env` file
 
