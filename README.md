@@ -127,17 +127,17 @@ There are two ways to setup the Sensu Web Dev environment: manual installation (
        staging
      ```
 
-  - Run the `sensuctl entity list` command.
+   - Run the `sensuctl entity list` command.
 
-    You should see output similar to the following:
+     You should see output similar to the following:
 
-    ```shell
-    $ sensuctl entity list --all-namespaces
+     ```shell
+     $ sensuctl entity list --all-namespaces
              ID         Class      OS                       Subscriptions                              Last Seen
      ───────────────── ─────── ────────── ───────────────────────────────────────────────── ────────────────────────────────
        db01             agent   linux      system/linux,workshop,devel,entity:28b2d129bd90   2021-08-05 17:02:56 -0700 PDT
        app0             proxy   Workshop   entity:learn.sensu.io                             N/A
-    ```
+     ```
 
 1. **Create a Sensu API Key.**
 
