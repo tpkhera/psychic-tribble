@@ -4,13 +4,13 @@ import { useQuery, gql } from "@apollo/client";
 // See "Response Filtering" for example usage: https://docs.sensu.io/sensu-go/latest/api/#response-filtering
 const q = `fieldSelector: entity.class != service`;
 
-// Use 'default' namespace by default
+// The 'default' namespace is seeded by... default
 const namespace = "default";
 
-// Use documentation tab in GraphiQL for more
+// Use documentation tab in GraphiQL for more options
 const order = "ID";
 
-// Query entities within the given namespace.
+// Query entities within the given namespace
 const query = gql`
   query EntitiesQuery(
     $namespace: String!
