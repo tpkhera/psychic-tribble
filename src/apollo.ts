@@ -3,7 +3,7 @@ import { setContext } from "@apollo/client/link/context";
 
 const createAuthLink = () =>
   setContext((_, { headers }) => {
-    const apikey = process.env.SENSU_API_KEY;
+    const apikey = process.env.REACT_APP_KEY;
     if (!apikey) {
       console.warn(`
         it does not appear as if the environment variable SENSU_API_KEY is set,
@@ -14,22 +14,25 @@ const createAuthLink = () =>
     return {
       headers: {
         ...headers,
-        authorization: `Token ${apikey}`,
+        authorization: `Key ${apikey}`,
       },
     };
   });
 
 const createClient = () => {
-  const url = process.env.SENSU_API_URL;
-  if (!url) {
-    console.warn(`
-      it does not appear as if the environment variable SENSU_API_URL is set,
-      this may hinder your ability to communicate with the Sensu GraphQL service.
-    `);
-  }
+  // NOTE: the backend doesn't support CORS
+  //
+  // const url = process.env.REACT_APP_API;
+  // if (!url) {
+  //   console.warn(`
+  //     it does not appear as if the environment variable SENSU_API_URL is set,
+  //     this may hinder your ability to communicate with the Sensu GraphQL service.
+  //   `);
+  // }
+  //
 
   const authLink = createAuthLink();
-  const httpLink = createHttpLink({ uri: url + "/graphql" });
+  const httpLink = createHttpLink({ uri: "/graphql" });
 
   return new ApolloClient({
     link: authLink.concat(httpLink),
