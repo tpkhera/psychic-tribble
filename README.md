@@ -11,6 +11,37 @@
 The Sensu Web Dev project is a template for developing prototype web applications for [Sensu Go](https://sensu.io).
 The primary objective of this project is to provide a simple local development environment for Sensu front end engineering skills assessments (i.e. technical job interviews).
 
+# Goals
+
+## User Stories
+
+We need to build a application that allows our users to manage the entities within their Sensu installation.
+
+- A user must be able to list the entities within their Sensu installation.
+- A user must be able to sort the list of entities.
+- A user must be able to filter the list of entities.
+- A user must be able to delete entities.
+
+To get you up and running quickly, we provide a simple base application that can connect to our GraphQL service. See below for setup instructions.
+
+Despite the very minimal canvas to get started, you are free to use any means of state management, styling, or other patterns. There are no wrong answers, this portion of the interview process is your chance to flex your skills. Show us what you've got.
+
+## Discussion
+
+Be prepared to discuss,
+
+- Describe the data structures you deem necassary while building the feature.
+- Discuss how you've designed the interface to be ease to use.
+- Discuss how you broke the problems down and tackled them.
+
+Bonus
+
+Visualize events associated with the entity. Or, other anything else you might find interesting, we love surprises.
+
+## Time
+
+Please try to timebox your efforts to two hours. If you don't finish that is okay; ultimately we want to understand thought process, your ability to discuss your work, and your overall skill level, not necassarily your ability to complete arbitrary tasks.
+
 # Prerequisites
 
 1. **Git**
