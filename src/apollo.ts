@@ -3,7 +3,7 @@ import { setContext } from "@apollo/client/link/context";
 
 const createAuthLink = () =>
   setContext((_, { headers }) => {
-    const apikey = process.env.REACT_APP_KEY;
+    const apikey = process.env.REACT_APP_SENSU_API_KEY;
     if (!apikey) {
       console.warn(`
         it does not appear as if the environment variable SENSU_API_KEY is set,

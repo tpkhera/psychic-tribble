@@ -53,7 +53,7 @@ module.exports = function (app) {
   app.use(
     "/graphql",
     createProxyMiddleware({
-      target: process.env.SENSU_API_URL,
+      target: process.env.REACT_APP_SENSU_API_URL,
       changeOrigin: true,
     })
   );
@@ -66,7 +66,7 @@ module.exports = function (app) {
       {
         headerEditorEnabled: true,
         headers: JSON.stringify({
-          authorization: `Key ${process.env.SENSU_API_KEY}`,
+          authorization: `Key ${process.env.REACT_APP_SENSU_API_KEY}`,
         }),
       }
     )
