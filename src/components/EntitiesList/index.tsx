@@ -22,6 +22,7 @@ const EntitiesList: React.FC<{ entitiesListProps: EntitiesListProps }> = ({
 }) => {
   const entitiesQueryVariables = entitiesListProps;
   const { loading, error, data } = useEntitiesQuery(entitiesQueryVariables);
+
   const [fetchedEntityNodes, setFetchedEntityNodes] =
     useState<EntitiesQuery_namespace_entities_nodes[]>();
   const [filteredEntityNodes, setFilteredEntityNodes] =
@@ -88,6 +89,9 @@ const EntitiesList: React.FC<{ entitiesListProps: EntitiesListProps }> = ({
 
   return (
     <S.EntityTable>
+      <S.EntityTableTitle>
+        List of Entities: {entitiesListProps.namespace}
+      </S.EntityTableTitle>
       <S.SearchInputContainer>
         <S.SearchInput
           placeholder="Filter entities"
@@ -110,11 +114,13 @@ const EntitiesList: React.FC<{ entitiesListProps: EntitiesListProps }> = ({
   );
 };
 
-const EntityTableHeader: React.FC<{ onToggleSort: () => void }> = ({
-  onToggleSort,
-}: {
+type EntityTableHeaderProps = {
   onToggleSort: () => void;
-}) => {
+};
+
+const EntityTableHeader: React.FC<EntityTableHeaderProps> = ({
+  onToggleSort,
+}: EntityTableHeaderProps) => {
   return (
     <S.EntityTableHeader>
       <div onClick={onToggleSort}>
@@ -134,16 +140,15 @@ const EntityTableHeader: React.FC<{ onToggleSort: () => void }> = ({
   );
 };
 
-const EntityTableRow: React.FC<{
+type EntityTableRowProps = {
   entityNode: EntitiesQuery_namespace_entities_nodes;
   deleteEntityNode: (entityId: string) => void;
-}> = ({
+};
+
+const EntityTableRow: React.FC<EntityTableRowProps> = ({
   entityNode,
   deleteEntityNode,
-}: {
-  entityNode: EntitiesQuery_namespace_entities_nodes;
-  deleteEntityNode: (entityId: string) => void;
-}) => {
+}: EntityTableRowProps) => {
   return (
     <S.EntityTableRow>
       <span>{entityNode.id}</span>
@@ -151,7 +156,12 @@ const EntityTableRow: React.FC<{
       <span>{entityNode.entityClass}</span>
       <span>{entityNode.subscriptions}</span>
       <S.DeleteEntity onClick={() => deleteEntityNode(entityNode.id)}>
-        <img src={closeIcon} className="close-icon" alt="close" />
+        <img
+          src={closeIcon}
+          className="close-icon"
+          alt="close"
+          title="Delete entity"
+        />
       </S.DeleteEntity>
     </S.EntityTableRow>
   );

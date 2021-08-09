@@ -23,3 +23,62 @@
   text-align: center;
   font-size: max(10pt, 1vmin);
 }
+
+#blend-overlay {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: #fff;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  mix-blend-mode: difference;
+  pointer-events: none;
+  z-index: 0;
+  transition: all ease 0.5s;
+  opacity: 0;
+}
+
+#blend-overlay.on {
+  transform: scale(90);
+  z-index: 1;
+  opacity: 1;
+}
+
+#toggle-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #999;
+  width: 3rem;
+  height: 3rem;
+  position: fixed;
+  border-radius: 50%;
+  bottom: 2rem;
+  right: 2rem;
+  cursor: pointer;
+  transition: all ease 0.5s;
+  z-index: 1;
+  opacity: 0.4;
+  animation: bounce 3s infinite ease-in-out;
+}
+
+#toggle-overlay:hover {
+  opacity: 1;
+}
+
+#toggle-overlay.on {
+  z-index: 0;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(-4px);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+  100% {
+    transform: translateY(-4px);
+  }
+}

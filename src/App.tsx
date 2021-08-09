@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery, gql } from "@apollo/client";
 
 // TODO: Implement me!
 import { EntitiesList } from "components";
 import { EntityListOrder } from "helpers/types-helper";
-import { logo } from "assets";
+import { logo, toggleDark } from "assets";
 import "./App.css";
 
 // As an example: query version & build date from service
@@ -22,6 +22,7 @@ const APP_QUERY = gql`
 // NOTE: Feel free to delete me at your lesuire
 function App() {
   const { loading, error, data } = useQuery(APP_QUERY);
+  const [darkMode, setDarkMode] = useState(false);
 
   let message: React.ReactNode;
   if (error) {
@@ -88,6 +89,19 @@ function App() {
 
         <EntitiesList entitiesListProps={{ q, namespace, order }} />
       </div>
+      <div
+        id="toggle-overlay"
+        className={darkMode ? "on" : "off"}
+        onClick={() => setDarkMode(!darkMode)}
+      >
+        <img
+          src={toggleDark}
+          className="toggle-icon"
+          alt="toggle"
+          title="Toggle dark mode"
+        />
+      </div>
+      <div id="blend-overlay" className={darkMode ? "on" : "off"}></div>
     </div>
   );
 }

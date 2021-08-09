@@ -7,7 +7,11 @@ export const EntityTable = styled.div`
   max-height: 70vh;
   min-width: 40vw;
   overflow: auto;
-  box-shadow: 3px 1px 10px 10px #f3f3f3;
+`;
+
+export const EntityTableTitle = styled.h3`
+  color: #666;
+  font-size: 1.7rem;
 `;
 
 export const DeleteEntity = styled.div`
@@ -37,6 +41,7 @@ export const EntityTableRow = styled.div`
     flex: 2;
   }
   &:hover {
+    background-color: #f4f6f8;
     ${DeleteEntity} {
       opacity: 0.4;
     }
@@ -83,6 +88,11 @@ export const SearchInput = styled.input`
   margin: 1rem;
   flex: 1;
   outline: none;
+  transition: 0.1s all ease;
+  &:active,
+  &:focus {
+    background-color: #f4f4f4;
+  }
 `;
 
 export const EmptyTable = styled.div`
