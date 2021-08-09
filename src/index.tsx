@@ -6,6 +6,7 @@ import App from "./App";
 
 import createApolloClient from "./apollo";
 
+import "normalize.css";
 import "./index.css";
 
 const apolloClient = createApolloClient();
