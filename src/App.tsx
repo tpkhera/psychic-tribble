@@ -2,9 +2,9 @@ import React from "react";
 import { useQuery, gql } from "@apollo/client";
 
 // TODO: Implement me!
-// import EntitiesList from "./EntitiesList";
-
-import logo from "./logo.svg";
+import { EntitiesList } from "components";
+import { EntityListOrder } from "helpers/types-helper";
+import { logo } from "assets";
 import "./App.css";
 
 // As an example: query version & build date from service
@@ -43,6 +43,19 @@ function App() {
     );
   }
 
+  // See "Response Filtering" for example usage: https://docs.sensu.io/sensu-go/latest/api/#response-filtering
+  const q = `fieldSelector: entity.class != service`;
+
+  // The 'default' namespace is seeded by... default
+
+  // Using the development namespace here, as default had no data in the sample.
+  // Ideally, in order to display all the entities, would really have preferred
+  // a query to fetch all the namespaces and traverse thru each to fetch the respective entities.
+  const namespace = "development";
+
+  // Use documentation tab in GraphiQL for more options
+  const order = EntityListOrder.ID;
+
   return (
     <div className="App">
       <header className="App-header">
@@ -50,14 +63,14 @@ function App() {
       </header>
 
       <div className="App-body">
-        <p>
+        <div>
           <ul>
             <li>reticulating splines...</li>
             <li>calculating llama expectoration trajectory...</li>
             <li>connecting to Sensu cluster...</li>
             <li>{message}</li>
           </ul>
-        </p>
+        </div>
 
         <p>
           <a href="/graphiql" target="_blank" rel="noopener noreferrer">
@@ -73,7 +86,7 @@ function App() {
           </a>
         </p>
 
-        {/* <EntitiesList /> */}
+        <EntitiesList entitiesListProps={{ q, namespace, order }} />
       </div>
     </div>
   );
